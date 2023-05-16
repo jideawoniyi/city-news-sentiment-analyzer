@@ -4,7 +4,7 @@
   background-color: #1f1f1f;
   color: #add8e6; // Light blue color for the story text
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); // Faint white line
-
+  cursor: pointer; /* Set the cursor to hand (pointer) */
   &:last-child {
     border-bottom: none; // No border for the last story
   }

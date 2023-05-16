@@ -1,21 +1,16 @@
-import { checkForName } from './js/nameChecker'
-import { handleSubmit } from './js/formHandler'
-import './styles/base.scss'
-import './styles/resets.scss'
-import './styles/footer.scss'
-import './styles/form.scss'
-import './styles/header.scss'
-import './styles/news-story.scss'
-import './styles/news-story-parent.scss'
-
-export {
-    checkForName,
-    handleSubmit
-}
+import { checkForName } from './js/nameChecker';
+import { handleSubmit } from './js/formHandler';
+import './styles/base.scss';
+import './styles/resets.scss';
+import './styles/footer.scss';
+import './styles/form.scss';
+import './styles/header.scss';
+import './styles/news-story.scss';
+import './styles/news-story-parent.scss';
 
 console.log(checkForName);
 
-alert("I EXIST")
+alert("I EXIST");
 
 document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -42,6 +37,4 @@ window.onscroll = function() {
   }
 
   prevScrollPos = currentScrollPos;
-
 };
-

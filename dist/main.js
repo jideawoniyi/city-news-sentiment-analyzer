@@ -19,39 +19,40 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var handleSubmit = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-    var city, res, data, results, storiesContainer, totalStories, _loop, i, _results;
+    var cityInput, city, res, data, results, storiesContainer, totalStories, _loop, i, _results;
     return _regeneratorRuntime().wrap(function _callee$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           event.preventDefault();
 
-          // check what text was put into the form field
-          city = document.getElementById('name').value;
+          // Retrieve the city from the form input
+          cityInput = document.getElementById('name');
+          city = cityInput.value;
           if (city) {
-            _context2.next = 4;
+            _context2.next = 5;
             break;
           }
           return _context2.abrupt("return");
-        case 4:
-          _context2.prev = 4;
-          _context2.next = 7;
+        case 5:
+          _context2.prev = 5;
+          _context2.next = 8;
           return fetch("http://localhost:8081/aylien?city=".concat(city), {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
             }
           });
-        case 7:
+        case 8:
           res = _context2.sent;
           if (res.ok) {
-            _context2.next = 10;
+            _context2.next = 11;
             break;
           }
           throw new Error('An error occurred with the Aylien API request.');
-        case 10:
-          _context2.next = 12;
+        case 11:
+          _context2.next = 13;
           return res.json();
-        case 12:
+        case 13:
           data = _context2.sent;
           results = document.getElementById('results');
           results.innerHTML = ''; // Clear current results
@@ -63,52 +64,74 @@ var handleSubmit = /*#__PURE__*/function () {
           // Add each story to the storiesContainer
           totalStories = data.length; // Get the total number of stories
           _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop(i) {
-            var storyDiv;
+            var storyDiv, storyTitle, storySnippet, polarity, polarityElement;
             return _regeneratorRuntime().wrap(function _loop$(_context) {
               while (1) switch (_context.prev = _context.next) {
                 case 0:
-                  // Note: i starts from 0
+                  // Create the story div
                   storyDiv = document.createElement('div');
                   storyDiv.className = 'news-story';
-                  storyDiv.innerHTML = "<h2>".concat(i + 1, "/").concat(totalStories, " - ").concat(data[i].title, "</h2>"); // Display story number
 
+                  // Create the story title element
+                  storyTitle = document.createElement('h2');
+                  storyTitle.textContent = "".concat(i + 1, "/").concat(totalStories, " - ").concat(data[i].title);
+                  storyDiv.appendChild(storyTitle);
+
+                  // Create the story snippet element
+                  storySnippet = document.createElement('p');
+                  storySnippet.textContent = data[i].snippet; // Text snippet from the article
+                  storyDiv.appendChild(storySnippet);
+
+                  // Retrieve polarity from the API response
+                  polarity = data[i].sentiment.title.polarity; // Create the polarity element
+                  polarityElement = document.createElement('p');
+                  if (polarity) {
+                    polarityElement.textContent = "Polarity: ".concat(polarity === 'positive' ? 'Positive' : 'Negative');
+                  } else {
+                    polarityElement.textContent = 'Polarity: N/A';
+                  }
+                  storyDiv.appendChild(polarityElement);
+
+                  // Add click event listener to open the article in a new tab
                   storyDiv.addEventListener('click', function () {
                     window.open(data[i].links.permalink, '_blank');
                   });
+
+                  // Append the story div to the storiesContainer
                   storiesContainer.appendChild(storyDiv);
-                case 5:
+                case 14:
                 case "end":
                   return _context.stop();
               }
             }, _loop);
           });
           i = 0;
-        case 20:
+        case 21:
           if (!(i < totalStories)) {
-            _context2.next = 25;
+            _context2.next = 26;
             break;
           }
-          return _context2.delegateYield(_loop(i), "t0", 22);
-        case 22:
+          return _context2.delegateYield(_loop(i), "t0", 23);
+        case 23:
           i++;
-          _context2.next = 20;
+          _context2.next = 21;
           break;
-        case 25:
+        case 26:
           // Append the storiesContainer to the results
           results.appendChild(storiesContainer);
-          _context2.next = 33;
+          _context2.next = 34;
           break;
-        case 28:
-          _context2.prev = 28;
-          _context2.t1 = _context2["catch"](4);
+        case 29:
+          _context2.prev = 29;
+          _context2.t1 = _context2["catch"](5);
           console.error(_context2.t1);
           _results = document.getElementById('results');
           _results.innerHTML = 'Error occurred while fetching data.';
-        case 33:
+        case 34:
         case "end":
           return _context2.stop();
       }
-    }, _callee, null, [[4, 28]]);
+    }, _callee, null, [[5, 29]]);
   }));
   return function handleSubmit(_x) {
     return _ref.apply(this, arguments);
@@ -288,7 +311,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".news-story {\n  margin: 20px 0;\n  padding: 20px;\n  background-color: #1f1f1f;\n  color: #add8e6;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.2); }\n  .news-story:last-child {\n    border-bottom: none; }\n  .news-story:hover {\n    transform: scale(1.02); }\n  .news-story h2 {\n    margin: 0;\n    color: #ff7f50; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/news-story.scss"],"names":[],"mappings":"AAAA;EACE,cAAc;EACd,aAAa;EACb,yBAAyB;EACzB,cAAc;EACd,iDAAiD,EAAA;EALnD;IAQI,mBAAmB,EAAA;EARvB;IAYI,sBAAsB,EAAA;EAZ1B;IAgBI,SAAS;IACT,cAAc,EAAA","sourcesContent":[".news-story {\n  margin: 20px 0; // Adjust as per your needs\n  padding: 20px;\n  background-color: #1f1f1f;\n  color: #add8e6; // Light blue color for the story text\n  border-bottom: 1px solid rgba(255, 255, 255, 0.2); // Faint white line\n\n  &:last-child {\n    border-bottom: none; // No border for the last story\n  }\n\n  &:hover {\n    transform: scale(1.02);\n  }\n\n  h2 {\n    margin: 0;\n    color: #ff7f50; // Coral color for the story title\n  }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".news-story {\n  margin: 20px 0;\n  padding: 20px;\n  background-color: #1f1f1f;\n  color: #add8e6;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.2);\n  cursor: pointer;\n  /* Set the cursor to hand (pointer) */ }\n  .news-story:last-child {\n    border-bottom: none; }\n  .news-story:hover {\n    transform: scale(1.02); }\n  .news-story h2 {\n    margin: 0;\n    color: #ff7f50; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/news-story.scss"],"names":[],"mappings":"AAAA;EACE,cAAc;EACd,aAAa;EACb,yBAAyB;EACzB,cAAc;EACd,iDAAiD;EACjD,eAAe;EAAE,qCAAA,EAAsC;EANzD;IAQI,mBAAmB,EAAA;EARvB;IAYI,sBAAsB,EAAA;EAZ1B;IAgBI,SAAS;IACT,cAAc,EAAA","sourcesContent":[".news-story {\n  margin: 20px 0; // Adjust as per your needs\n  padding: 20px;\n  background-color: #1f1f1f;\n  color: #add8e6; // Light blue color for the story text\n  border-bottom: 1px solid rgba(255, 255, 255, 0.2); // Faint white line\n  cursor: pointer; /* Set the cursor to hand (pointer) */\n  &:last-child {\n    border-bottom: none; // No border for the last story\n  }\n\n  &:hover {\n    transform: scale(1.02);\n  }\n\n  h2 {\n    margin: 0;\n    color: #ff7f50; // Coral color for the story title\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1165,10 +1188,6 @@ var __webpack_exports__ = {};
   !*** ./src/client/index.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkForName": () => (/* reexport safe */ _js_nameChecker__WEBPACK_IMPORTED_MODULE_0__.checkForName),
-/* harmony export */   "handleSubmit": () => (/* reexport safe */ _js_formHandler__WEBPACK_IMPORTED_MODULE_1__.handleSubmit)
-/* harmony export */ });
 /* harmony import */ var _js_nameChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/nameChecker */ "./src/client/js/nameChecker.js");
 /* harmony import */ var _js_formHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/formHandler */ "./src/client/js/formHandler.js");
 /* harmony import */ var _styles_base_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/base.scss */ "./src/client/styles/base.scss");
@@ -1178,7 +1197,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_header_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./styles/header.scss */ "./src/client/styles/header.scss");
 /* harmony import */ var _styles_news_story_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./styles/news-story.scss */ "./src/client/styles/news-story.scss");
 /* harmony import */ var _styles_news_story_parent_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./styles/news-story-parent.scss */ "./src/client/styles/news-story-parent.scss");
-
 
 
 
