@@ -23,3 +23,14 @@ document.getElementById('form').addEventListener('submit', function(event) {
 
     handleSubmit(event);  // Then handle the form submission
 });
+
+window.onscroll = function() {
+    var scrollHeight, totalHeight;
+    scrollHeight = document.body.scrollHeight;
+    totalHeight = window.scrollY + window.innerHeight;
+
+    if(totalHeight >= scrollHeight) {
+        document.querySelector("footer").classList.add("visible");
+    }
+};
+
