@@ -22,22 +22,22 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var handleSubmit = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-    var city, res, data, results, _iterator, _step, story, p, _results;
-    return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
+    var city, res, data, results, _iterator, _step, _loop, _results;
+    return _regeneratorRuntime().wrap(function _callee$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
         case 0:
           event.preventDefault();
 
           // check what text was put into the form field
           city = document.getElementById('name').value;
           if (city) {
-            _context.next = 4;
+            _context2.next = 4;
             break;
           }
-          return _context.abrupt("return");
+          return _context2.abrupt("return");
         case 4:
-          _context.prev = 4;
-          _context.next = 7;
+          _context2.prev = 4;
+          _context2.next = 7;
           return fetch("http://localhost:8081/aylien?city=".concat(city), {
             method: 'GET',
             headers: {
@@ -45,47 +45,77 @@ var handleSubmit = /*#__PURE__*/function () {
             }
           });
         case 7:
-          res = _context.sent;
+          res = _context2.sent;
           if (res.ok) {
-            _context.next = 10;
+            _context2.next = 10;
             break;
           }
           throw new Error('An error occurred with the Aylien API request.');
         case 10:
-          _context.next = 12;
+          _context2.next = 12;
           return res.json();
         case 12:
-          data = _context.sent;
+          data = _context2.sent;
           results = document.getElementById('results');
           results.innerHTML = ''; // Clear current results
 
           // Add each story to the results
           _iterator = _createForOfIteratorHelper(data);
-          try {
-            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              story = _step.value;
-              p = document.createElement('p');
-              p.textContent = story.title;
-              results.appendChild(p);
-            }
-          } catch (err) {
-            _iterator.e(err);
-          } finally {
-            _iterator.f();
-          }
-          _context.next = 24;
-          break;
+          _context2.prev = 16;
+          _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop() {
+            var story, storyDiv;
+            return _regeneratorRuntime().wrap(function _loop$(_context) {
+              while (1) switch (_context.prev = _context.next) {
+                case 0:
+                  story = _step.value;
+                  storyDiv = document.createElement('div');
+                  storyDiv.className = 'news-story';
+                  storyDiv.innerHTML = "<h2>".concat(story.title, "</h2><p>").concat(story.summary, "</p>");
+                  storyDiv.addEventListener('click', function () {
+                    window.open(story.links.permalink, '_blank');
+                  });
+                  results.appendChild(storyDiv);
+                case 6:
+                case "end":
+                  return _context.stop();
+              }
+            }, _loop);
+          });
+          _iterator.s();
         case 19:
-          _context.prev = 19;
-          _context.t0 = _context["catch"](4);
-          console.error(_context.t0);
+          if ((_step = _iterator.n()).done) {
+            _context2.next = 23;
+            break;
+          }
+          return _context2.delegateYield(_loop(), "t0", 21);
+        case 21:
+          _context2.next = 19;
+          break;
+        case 23:
+          _context2.next = 28;
+          break;
+        case 25:
+          _context2.prev = 25;
+          _context2.t1 = _context2["catch"](16);
+          _iterator.e(_context2.t1);
+        case 28:
+          _context2.prev = 28;
+          _iterator.f();
+          return _context2.finish(28);
+        case 31:
+          _context2.next = 38;
+          break;
+        case 33:
+          _context2.prev = 33;
+          _context2.t2 = _context2["catch"](4);
+          console.error(_context2.t2);
           _results = document.getElementById('results');
           _results.innerHTML = 'Error occurred while fetching data.';
-        case 24:
+        case 38:
         case "end":
-          return _context.stop();
+          return _context2.stop();
       }
-    }, _callee, null, [[4, 19]]);
+    }, _callee, null, [[4, 33], [16, 25, 28, 31]]);
   }));
   return function handleSubmit(_x) {
     return _ref.apply(this, arguments);
@@ -135,7 +165,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  font-family: Arial, sans-serif;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n  background-color: #f5f5f5; }\n\nform {\n  display: flex;\n  flex-direction: column;\n  width: 300px;\n  margin-bottom: 20px;\n  background-color: #fff;\n  padding: 20px;\n  border-radius: 5px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }\n\nform input[type=\"text\"] {\n  margin-bottom: 10px;\n  padding: 10px;\n  border-radius: 3px;\n  border: 1px solid #ddd; }\n\nform input[type=\"submit\"] {\n  padding: 10px;\n  background-color: #007BFF;\n  color: #fff;\n  border: none;\n  border-radius: 3px;\n  cursor: pointer; }\n\nsection {\n  width: 300px;\n  background-color: #fff;\n  padding: 20px;\n  border-radius: 5px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }\n\n#results {\n  margin-top: 20px;\n  padding: 0; }\n\n#results p {\n  padding: 10px;\n  border-radius: 3px;\n  background: #ddd;\n  margin-bottom: 10px; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/base.scss"],"names":[],"mappings":"AAAA;EACI,8BAA8B;EAC9B,SAAS;EACT,UAAU;EACV,aAAa;EACb,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;EACnB,aAAa;EACb,yBAAyB,EAAA;;AAE7B;EACI,aAAa;EACb,sBAAsB;EACtB,YAAY;EACZ,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,kBAAkB;EAClB,uCAAoC,EAAA;;AAExC;EACI,mBAAmB;EACnB,aAAa;EACb,kBAAkB;EAClB,sBAAsB,EAAA;;AAE1B;EACI,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,eAAe,EAAA;;AAEnB;EACI,YAAY;EACZ,sBAAsB;EACtB,aAAa;EACb,kBAAkB;EAClB,uCAAoC,EAAA;;AAExC;EACI,gBAAgB;EAChB,UAAU,EAAA;;AAEd;EACI,aAAa;EACb,kBAAkB;EAClB,gBAAgB;EAChB,mBAAmB,EAAA","sourcesContent":["body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    height: 100vh;\n    background-color: #f5f5f5;\n}\nform {\n    display: flex;\n    flex-direction: column;\n    width: 300px;\n    margin-bottom: 20px;\n    background-color: #fff;\n    padding: 20px;\n    border-radius: 5px;\n    box-shadow: 0 0 10px rgba(0,0,0,0.1);\n}\nform input[type=\"text\"] {\n    margin-bottom: 10px;\n    padding: 10px;\n    border-radius: 3px;\n    border: 1px solid #ddd;\n}\nform input[type=\"submit\"] {\n    padding: 10px;\n    background-color: #007BFF;\n    color: #fff;\n    border: none;\n    border-radius: 3px;\n    cursor: pointer;\n}\nsection {\n    width: 300px;\n    background-color: #fff;\n    padding: 20px;\n    border-radius: 5px;\n    box-shadow: 0 0 10px rgba(0,0,0,0.1);\n}\n#results {\n    margin-top: 20px;\n    padding: 0;\n}\n#results p {\n    padding: 10px;\n    border-radius: 3px;\n    background: #ddd;\n    margin-bottom: 10px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  font-family: Arial, sans-serif;\n  margin: 0;\n  padding: 0;\n  background-color: #f5f5f5; }\n\nheader {\n  background-color: #007BFF;\n  color: #fff;\n  padding: 20px;\n  text-align: center; }\n\nform {\n  display: flex;\n  justify-content: center;\n  padding: 20px; }\n\nform input[type=\"text\"] {\n  margin-right: 10px;\n  padding: 10px;\n  border-radius: 3px;\n  border: 1px solid #ddd; }\n\nform input[type=\"submit\"] {\n  padding: 10px;\n  background-color: #007BFF;\n  color: #fff;\n  border: none;\n  border-radius: 3px;\n  cursor: pointer; }\n\n#results {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 20px;\n  padding: 20px; }\n\n.news-story {\n  width: 80%;\n  padding: 20px;\n  background-color: #fff;\n  border-radius: 5px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  cursor: pointer;\n  transition: transform 0.3s ease; }\n\n.news-story:hover {\n  transform: scale(1.02); }\n\n.news-story h2 {\n  margin: 0;\n  font-size: 1.5em; }\n\n.news-story p {\n  margin-top: 10px; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/base.scss"],"names":[],"mappings":"AAAA;EACI,8BAA8B;EAC9B,SAAS;EACT,UAAU;EACV,yBAAyB,EAAA;;AAG7B;EACI,yBAAyB;EACzB,WAAW;EACX,aAAa;EACb,kBAAkB,EAAA;;AAGtB;EACI,aAAa;EACb,uBAAuB;EACvB,aAAa,EAAA;;AAGjB;EACI,kBAAkB;EAClB,aAAa;EACb,kBAAkB;EAClB,sBAAsB,EAAA;;AAG1B;EACI,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,eAAe,EAAA;;AAGnB;EACI,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,SAAS;EACT,aAAa,EAAA;;AAGjB;EACI,UAAU;EACV,aAAa;EACb,sBAAsB;EACtB,kBAAkB;EAClB,uCAAoC;EACpC,eAAe;EACf,+BAA+B,EAAA;;AAGnC;EACI,sBAAsB,EAAA;;AAG1B;EACI,SAAS;EACT,gBAAgB,EAAA;;AAGpB;EACI,gBAAgB,EAAA","sourcesContent":["body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f5f5f5;\n}\n\nheader {\n    background-color: #007BFF;\n    color: #fff;\n    padding: 20px;\n    text-align: center;\n}\n\nform {\n    display: flex;\n    justify-content: center;\n    padding: 20px;\n}\n\nform input[type=\"text\"] {\n    margin-right: 10px;\n    padding: 10px;\n    border-radius: 3px;\n    border: 1px solid #ddd;\n}\n\nform input[type=\"submit\"] {\n    padding: 10px;\n    background-color: #007BFF;\n    color: #fff;\n    border: none;\n    border-radius: 3px;\n    cursor: pointer;\n}\n\n#results {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 20px;\n    padding: 20px;\n}\n\n.news-story {\n    width: 80%;\n    padding: 20px;\n    background-color: #fff;\n    border-radius: 5px;\n    box-shadow: 0 0 10px rgba(0,0,0,0.1);\n    cursor: pointer;\n    transition: transform 0.3s ease;\n}\n\n.news-story:hover {\n    transform: scale(1.02);\n}\n\n.news-story h2 {\n    margin: 0;\n    font-size: 1.5em;\n}\n\n.news-story p {\n    margin-top: 10px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

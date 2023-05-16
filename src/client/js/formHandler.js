@@ -27,10 +27,15 @@ const handleSubmit = async (event) => {
 
         // Add each story to the results
         for (let story of data) {
-            let p = document.createElement('p');
-            p.textContent = story.title;
-            results.appendChild(p);
+            let storyDiv = document.createElement('div');
+            storyDiv.className = 'news-story';
+            storyDiv.innerHTML = `<h2>${story.title}</h2><p>${story.summary}</p>`;
+            storyDiv.addEventListener('click', function() {
+                window.open(story.links.permalink, '_blank');
+            });
+            results.appendChild(storyDiv);
         }
+    
     } catch (error) {
         console.error(error);
         const results = document.getElementById('results');
