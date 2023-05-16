@@ -29,7 +29,7 @@ const handleSubmit = async (event) => {
         for (let story of data) {
             let storyDiv = document.createElement('div');
             storyDiv.className = 'news-story';
-            storyDiv.innerHTML = `<h2>${story.title}</h2><p>${story.summary}</p>`;
+            storyDiv.innerHTML = `<h2>${story.title}</h2>`;
             storyDiv.addEventListener('click', function() {
                 window.open(story.links.permalink, '_blank');
             });
