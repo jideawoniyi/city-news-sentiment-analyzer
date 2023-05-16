@@ -26,6 +26,11 @@ const handleSubmit = async (event) => {
       const results = document.getElementById('results');
       results.innerHTML = ''; // Clear current results
   
+      if (data.length === 0) {
+        displayError("No results found.");
+        return;
+      }
+  
       // Create a new div to contain all the stories
       let storiesContainer = document.createElement('div');
       storiesContainer.className = 'news-story-parent';
@@ -47,16 +52,18 @@ const handleSubmit = async (event) => {
         storySnippet.textContent = data[i].snippet; // Text snippet from the article
         storyDiv.appendChild(storySnippet);
   
-        // Retrieve polarity from the API response
-        let polarity = data[i].sentiment.title.polarity;
+        // Retrieve sentiment and polarity from the API response
+        let sentiment = data[i].sentiment;
+        let polarity = sentiment ? sentiment.polarity : 'N/A';
+        let confidence = sentiment ? sentiment.confidence : 'N/A';
   
-        // Create the polarity element
+        // Create the sentiment and polarity elements
+        let sentimentElement = document.createElement('p');
+        sentimentElement.textContent = `Sentiment: ${polarity}`;
+        storyDiv.appendChild(sentimentElement);
+  
         let polarityElement = document.createElement('p');
-        if (polarity) {
-          polarityElement.textContent = `Polarity: ${polarity === 'positive' ? 'Positive' : 'Negative'}`;
-        } else {
-          polarityElement.textContent = 'Polarity: N/A';
-        }
+        polarityElement.textContent = `Polarity: ${polarity}`;
         storyDiv.appendChild(polarityElement);
   
         // Add click event listener to open the article in a new tab
@@ -72,9 +79,17 @@ const handleSubmit = async (event) => {
       results.appendChild(storiesContainer);
     } catch (error) {
       console.error(error);
-      const results = document.getElementById('results');
-      results.innerHTML = 'Error occurred while fetching data.';
+      displayError("Error occurred while fetching data.");
     }
+  };
+  
+  // Helper function to display error message
+  const displayError = (message) => {
+    const errorElement = document.createElement('p');
+    errorElement.classList.add('error-message');
+    errorElement.textContent = message;
+    document.getElementById('results').innerHTML = '';
+    document.getElementById('results').appendChild(errorElement);
   };
   
   export { handleSubmit };

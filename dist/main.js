@@ -19,7 +19,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var handleSubmit = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-    var cityInput, city, res, data, results, storiesContainer, totalStories, _loop, i, _results;
+    var cityInput, city, res, data, results, storiesContainer, totalStories, _loop, i;
     return _regeneratorRuntime().wrap(function _callee$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
@@ -56,7 +56,13 @@ var handleSubmit = /*#__PURE__*/function () {
           data = _context2.sent;
           results = document.getElementById('results');
           results.innerHTML = ''; // Clear current results
-
+          if (!(data.length === 0)) {
+            _context2.next = 19;
+            break;
+          }
+          displayError("No results found.");
+          return _context2.abrupt("return");
+        case 19:
           // Create a new div to contain all the stories
           storiesContainer = document.createElement('div');
           storiesContainer.className = 'news-story-parent';
@@ -64,7 +70,7 @@ var handleSubmit = /*#__PURE__*/function () {
           // Add each story to the storiesContainer
           totalStories = data.length; // Get the total number of stories
           _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop(i) {
-            var storyDiv, storyTitle, storySnippet, polarity, polarityElement;
+            var storyDiv, storyTitle, storySnippet, sentiment, polarity, confidence, sentimentElement, polarityElement;
             return _regeneratorRuntime().wrap(function _loop$(_context) {
               while (1) switch (_context.prev = _context.next) {
                 case 0:
@@ -82,14 +88,15 @@ var handleSubmit = /*#__PURE__*/function () {
                   storySnippet.textContent = data[i].snippet; // Text snippet from the article
                   storyDiv.appendChild(storySnippet);
 
-                  // Retrieve polarity from the API response
-                  polarity = data[i].sentiment.title.polarity; // Create the polarity element
+                  // Retrieve sentiment and polarity from the API response
+                  sentiment = data[i].sentiment;
+                  polarity = sentiment ? sentiment.polarity : 'N/A';
+                  confidence = sentiment ? sentiment.confidence : 'N/A'; // Create the sentiment and polarity elements
+                  sentimentElement = document.createElement('p');
+                  sentimentElement.textContent = "Sentiment: ".concat(polarity);
+                  storyDiv.appendChild(sentimentElement);
                   polarityElement = document.createElement('p');
-                  if (polarity) {
-                    polarityElement.textContent = "Polarity: ".concat(polarity === 'positive' ? 'Positive' : 'Negative');
-                  } else {
-                    polarityElement.textContent = 'Polarity: N/A';
-                  }
+                  polarityElement.textContent = "Polarity: ".concat(polarity);
                   storyDiv.appendChild(polarityElement);
 
                   // Add click event listener to open the article in a new tab
@@ -99,44 +106,52 @@ var handleSubmit = /*#__PURE__*/function () {
 
                   // Append the story div to the storiesContainer
                   storiesContainer.appendChild(storyDiv);
-                case 14:
+                case 19:
                 case "end":
                   return _context.stop();
               }
             }, _loop);
           });
           i = 0;
-        case 21:
+        case 24:
           if (!(i < totalStories)) {
-            _context2.next = 26;
+            _context2.next = 29;
             break;
           }
-          return _context2.delegateYield(_loop(i), "t0", 23);
-        case 23:
-          i++;
-          _context2.next = 21;
-          break;
+          return _context2.delegateYield(_loop(i), "t0", 26);
         case 26:
-          // Append the storiesContainer to the results
-          results.appendChild(storiesContainer);
-          _context2.next = 34;
+          i++;
+          _context2.next = 24;
           break;
         case 29:
-          _context2.prev = 29;
+          // Append the storiesContainer to the results
+          results.appendChild(storiesContainer);
+          _context2.next = 36;
+          break;
+        case 32:
+          _context2.prev = 32;
           _context2.t1 = _context2["catch"](5);
           console.error(_context2.t1);
-          _results = document.getElementById('results');
-          _results.innerHTML = 'Error occurred while fetching data.';
-        case 34:
+          displayError("Error occurred while fetching data.");
+        case 36:
         case "end":
           return _context2.stop();
       }
-    }, _callee, null, [[5, 29]]);
+    }, _callee, null, [[5, 32]]);
   }));
   return function handleSubmit(_x) {
     return _ref.apply(this, arguments);
   };
 }();
+
+// Helper function to display error message
+var displayError = function displayError(message) {
+  var errorElement = document.createElement('p');
+  errorElement.classList.add('error-message');
+  errorElement.textContent = message;
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('results').appendChild(errorElement);
+};
 
 
 /***/ }),
@@ -233,7 +248,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "form {\n  margin: 20px auto;\n  width: 80%;\n  max-width: 600px;\n  padding: 20px;\n  background-color: #1f1f1f;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 10px; }\n  form input, form button {\n    width: 100%;\n    padding: 30px;\n    margin-bottom: 10px;\n    border: none;\n    border-radius: 5px;\n    box-sizing: border-box;\n    background-color: #28a745;\n    /* Green color for the button */\n    color: #ffffff;\n    /* Text color for the input and button */\n    font-size: 20px; }\n  form button {\n    cursor: pointer; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/form.scss"],"names":[],"mappings":"AACA;EACI,iBAAiB;EACjB,UAAU;EACV,gBAAgB;EAChB,aAAa;EACb,yBAAyB;EACzB,wCAAwC;EACxC,mBAAmB,EAAA;EAPvB;IAUM,WAAW;IACX,aAAa;IACb,mBAAmB;IACnB,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,yBAAyB;IAAE,+BAAA;IAC3B,cAAc;IAAE,wCAAA;IAChB,eAAe,EAAA;EAlBrB;IAsBM,eAAe,EAAA","sourcesContent":["// form.scss\nform {\n    margin: 20px auto;\n    width: 80%;\n    max-width: 600px;\n    padding: 20px;\n    background-color: #1f1f1f;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n    border-radius: 10px;\n  \n    input, button {\n      width: 100%;\n      padding: 30px;\n      margin-bottom: 10px;\n      border: none;\n      border-radius: 5px;\n      box-sizing: border-box; // Add this line\n      background-color: #28a745; /* Green color for the button */\n      color: #ffffff; /* Text color for the input and button */\n      font-size: 20px;\n    }\n  \n    button {\n      cursor: pointer;\n    }\n  }\n  "],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "form {\n  margin: 20px auto;\n  width: 80%;\n  max-width: 600px;\n  padding: 20px;\n  background-color: #1f1f1f;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 10px; }\n  form input {\n    width: 100%;\n    padding: 30px;\n    margin-bottom: 10px;\n    border: none;\n    border-radius: 5px;\n    box-sizing: border-box;\n    background-color: #ffffff;\n    /* White color for the input */\n    color: #000000;\n    /* Black color for the input text */\n    font-size: 20px; }\n  form button {\n    width: 100%;\n    padding: 30px;\n    margin-bottom: 10px;\n    border: none;\n    border-radius: 5px;\n    box-sizing: border-box;\n    background-color: #000000;\n    /* Black color for the button */\n    color: #ffffff;\n    /* White color for the button text */\n    font-size: 20px;\n    cursor: pointer; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/form.scss"],"names":[],"mappings":"AACA;EACE,iBAAiB;EACjB,UAAU;EACV,gBAAgB;EAChB,aAAa;EACb,yBAAyB;EACzB,wCAAwC;EACxC,mBAAmB,EAAA;EAPrB;IAUI,WAAW;IACX,aAAa;IACb,mBAAmB;IACnB,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,yBAAyB;IAAE,8BAAA;IAC3B,cAAc;IAAE,mCAAA;IAChB,eAAe,EAAA;EAlBnB;IAsBI,WAAW;IACX,aAAa;IACb,mBAAmB;IACnB,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,yBAAyB;IAAE,+BAAA;IAC3B,cAAc;IAAE,oCAAA;IAChB,eAAe;IACf,eAAe,EAAA","sourcesContent":["// form.scss\nform {\n  margin: 20px auto;\n  width: 80%;\n  max-width: 600px;\n  padding: 20px;\n  background-color: #1f1f1f;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 10px;\n\n  input {\n    width: 100%;\n    padding: 30px;\n    margin-bottom: 10px;\n    border: none;\n    border-radius: 5px;\n    box-sizing: border-box;\n    background-color: #ffffff; /* White color for the input */\n    color: #000000; /* Black color for the input text */\n    font-size: 20px;\n  }\n\n  button {\n    width: 100%;\n    padding: 30px;\n    margin-bottom: 10px;\n    border: none;\n    border-radius: 5px;\n    box-sizing: border-box;\n    background-color: #000000; /* Black color for the button */\n    color: #ffffff; /* White color for the button text */\n    font-size: 20px;\n    cursor: pointer;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

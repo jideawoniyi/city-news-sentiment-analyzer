@@ -1,27 +1,35 @@
 // form.scss
 form {
-    margin: 20px auto;
-    width: 80%;
-    max-width: 600px;
-    padding: 20px;
-    background-color: #1f1f1f;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  
-    input, button {
-      width: 100%;
-      padding: 30px;
-      margin-bottom: 10px;
-      border: none;
-      border-radius: 5px;
-      box-sizing: border-box; // Add this line
-      background-color: #28a745; /* Green color for the button */
-      color: #ffffff; /* Text color for the input and button */
-      font-size: 20px;
-    }
-  
-    button {
-      cursor: pointer;
-    }
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #1f1f1f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  input {
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #ffffff; /* White color for the input */
+    color: #000000; /* Black color for the input text */
+    font-size: 20px;
   }
-  
+
+  button {
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #000000; /* Black color for the button */
+    color: #ffffff; /* White color for the button text */
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
