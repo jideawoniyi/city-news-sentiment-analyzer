@@ -1,0 +1,26 @@
+.news-story-parent {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #1f1f1f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: 0.3s;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  }
+}

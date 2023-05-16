@@ -1,0 +1,20 @@
+.news-story {
+  margin: 20px 0; // Adjust as per your needs
+  padding: 20px;
+  background-color: #1f1f1f;
+  color: #add8e6; // Light blue color for the story text
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); // Faint white line
+
+  &:last-child {
+    border-bottom: none; // No border for the last story
+  }
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  h2 {
+    margin: 0;
+    color: #ff7f50; // Coral color for the story title
+  }
+}

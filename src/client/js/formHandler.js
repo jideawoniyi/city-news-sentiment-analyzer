@@ -25,16 +25,25 @@ const handleSubmit = async (event) => {
         const results = document.getElementById('results');
         results.innerHTML = ''; // Clear current results
 
-        // Add each story to the results
-        for (let story of data) {
+        // Create a new div to contain all the stories
+        let storiesContainer = document.createElement('div');
+        storiesContainer.className = 'news-story-parent';
+
+        // Add each story to the storiesContainer
+        let totalStories = data.length;  // Get the total number of stories
+        for (let i = 0; i < totalStories; i++) {  // Note: i starts from 0
             let storyDiv = document.createElement('div');
             storyDiv.className = 'news-story';
-            storyDiv.innerHTML = `<h2>${story.title}</h2>`;
+            storyDiv.innerHTML = `<h2>${i+1}/${totalStories} - ${data[i].title}</h2>`;  // Display story number
+
             storyDiv.addEventListener('click', function() {
-                window.open(story.links.permalink, '_blank');
+                window.open(data[i].links.permalink, '_blank');
             });
-            results.appendChild(storyDiv);
+            storiesContainer.appendChild(storyDiv);
         }
+
+        // Append the storiesContainer to the results
+        results.appendChild(storiesContainer);
     
     } catch (error) {
         console.error(error);

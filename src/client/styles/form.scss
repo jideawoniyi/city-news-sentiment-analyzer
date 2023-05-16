@@ -1,22 +1,27 @@
+// form.scss
 form {
     margin: 20px auto;
     width: 80%;
     max-width: 600px;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #1f1f1f;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-
+  
     input, button {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: none;
-        border-radius: 5px;
+      width: 100%;
+      padding: 30px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+      box-sizing: border-box; // Add this line
+      background-color: #28a745; /* Green color for the button */
+      color: #ffffff; /* Text color for the input and button */
+      font-size: 20px;
     }
-
+  
     button {
-        background-color: #28a745;
-        color: white;
+      cursor: pointer;
     }
-}
+  }
+  

@@ -15,14 +15,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var handleSubmit = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-    var city, res, data, results, _iterator, _step, _loop, _results;
+    var city, res, data, results, storiesContainer, totalStories, _loop, i, _results;
     return _regeneratorRuntime().wrap(function _callee$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
@@ -59,63 +56,59 @@ var handleSubmit = /*#__PURE__*/function () {
           results = document.getElementById('results');
           results.innerHTML = ''; // Clear current results
 
-          // Add each story to the results
-          _iterator = _createForOfIteratorHelper(data);
-          _context2.prev = 16;
-          _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop() {
-            var story, storyDiv;
+          // Create a new div to contain all the stories
+          storiesContainer = document.createElement('div');
+          storiesContainer.className = 'news-story-parent';
+
+          // Add each story to the storiesContainer
+          totalStories = data.length; // Get the total number of stories
+          _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop(i) {
+            var storyDiv;
             return _regeneratorRuntime().wrap(function _loop$(_context) {
               while (1) switch (_context.prev = _context.next) {
                 case 0:
-                  story = _step.value;
+                  // Note: i starts from 0
                   storyDiv = document.createElement('div');
                   storyDiv.className = 'news-story';
-                  storyDiv.innerHTML = "<h2>".concat(story.title, "</h2>");
+                  storyDiv.innerHTML = "<h2>".concat(i + 1, "/").concat(totalStories, " - ").concat(data[i].title, "</h2>"); // Display story number
+
                   storyDiv.addEventListener('click', function () {
-                    window.open(story.links.permalink, '_blank');
+                    window.open(data[i].links.permalink, '_blank');
                   });
-                  results.appendChild(storyDiv);
-                case 6:
+                  storiesContainer.appendChild(storyDiv);
+                case 5:
                 case "end":
                   return _context.stop();
               }
             }, _loop);
           });
-          _iterator.s();
-        case 19:
-          if ((_step = _iterator.n()).done) {
-            _context2.next = 23;
+          i = 0;
+        case 20:
+          if (!(i < totalStories)) {
+            _context2.next = 25;
             break;
           }
-          return _context2.delegateYield(_loop(), "t0", 21);
-        case 21:
-          _context2.next = 19;
-          break;
-        case 23:
-          _context2.next = 28;
+          return _context2.delegateYield(_loop(i), "t0", 22);
+        case 22:
+          i++;
+          _context2.next = 20;
           break;
         case 25:
-          _context2.prev = 25;
-          _context2.t1 = _context2["catch"](16);
-          _iterator.e(_context2.t1);
+          // Append the storiesContainer to the results
+          results.appendChild(storiesContainer);
+          _context2.next = 33;
+          break;
         case 28:
           _context2.prev = 28;
-          _iterator.f();
-          return _context2.finish(28);
-        case 31:
-          _context2.next = 38;
-          break;
-        case 33:
-          _context2.prev = 33;
-          _context2.t2 = _context2["catch"](4);
-          console.error(_context2.t2);
+          _context2.t1 = _context2["catch"](4);
+          console.error(_context2.t1);
           _results = document.getElementById('results');
           _results.innerHTML = 'Error occurred while fetching data.';
-        case 38:
+        case 33:
         case "end":
           return _context2.stop();
       }
-    }, _callee, null, [[4, 33], [16, 25, 28, 31]]);
+    }, _callee, null, [[4, 28]]);
   }));
   return function handleSubmit(_x) {
     return _ref.apply(this, arguments);
@@ -164,9 +157,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html, body {\n  font-family: 'Open Sans', sans-serif;\n  margin: 0;\n  padding: 0;\n  background-color: #f8f9fa;\n  color: #212529; }\n\n.news-story {\n  margin: 20px auto;\n  width: 80%;\n  max-width: 600px;\n  padding: 20px;\n  background-color: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 10px;\n  transition: 0.3s;\n  color: #4169E1;\n  /* Royal Blue color for the story text */ }\n  .news-story:hover {\n    transform: scale(1.02); }\n  .news-story h2 {\n    margin: 0;\n    color: #FF6347;\n    /* Tomato color for the story title */ }\n  .news-story::after {\n    content: \"\";\n    display: block;\n    height: 10px;\n    width: 100%;\n    background: linear-gradient(to bottom, white 0%, rgba(255, 255, 255, 0) 100%); }\n  .news-story::before {\n    content: \"\";\n    display: block;\n    height: 10px;\n    width: 100%;\n    background: linear-gradient(to top, white 0%, rgba(255, 255, 255, 0) 100%); }\n", "",{"version":3,"sources":["webpack://./src/client/styles/base.scss"],"names":[],"mappings":"AAEA;EACI,oCAAoC;EACpC,SAAS;EACT,UAAU;EACV,yBAAyB;EACzB,cAAc,EAAA;;AAGlB;EACI,iBAAiB;EACjB,UAAU;EACV,gBAAgB;EAChB,aAAa;EACb,sBAAsB;EACtB,wCAAqC;EACrC,mBAAmB;EACnB,gBAAgB;EAChB,cAAc;EAAE,wCAAA,EAAyC;EAT7D;IAYQ,sBAAsB,EAAA;EAZ9B;IAgBQ,SAAS;IACT,cAAc;IAAE,qCAAA,EAAsC;EAjB9D;IAqBQ,WAAW;IACX,cAAc;IACd,YAAY;IACZ,WAAW;IACX,6EAAwF,EAAA;EAzBhG;IA6BQ,WAAW;IACX,cAAc;IACd,YAAY;IACZ,WAAW;IACX,0EAAqF,EAAA","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');\n\nhtml, body {\n    font-family: 'Open Sans', sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f8f9fa;\n    color: #212529;\n}\n\n.news-story {\n    margin: 20px auto;\n    width: 80%;\n    max-width: 600px;\n    padding: 20px;\n    background-color: #fff;\n    box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n    border-radius: 10px;\n    transition: 0.3s;\n    color: #4169E1; /* Royal Blue color for the story text */\n\n    &:hover {\n        transform: scale(1.02);\n    }\n\n    h2 {\n        margin: 0;\n        color: #FF6347; /* Tomato color for the story title */\n    }\n\n    &::after {\n        content: \"\";\n        display: block;\n        height: 10px;\n        width: 100%;\n        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);\n    }\n\n    &::before {\n        content: \"\";\n        display: block;\n        height: 10px;\n        width: 100%;\n        background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);\n    }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".news-stories {\n  margin: 20px auto;\n  width: 80%;\n  max-width: 600px;\n  padding: 20px;\n  background-color: #1f1f1f;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 10px;\n  transition: 0.3s; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/base.scss"],"names":[],"mappings":"AAAA;EACI,iBAAiB;EACjB,UAAU;EACV,gBAAgB;EAChB,aAAa;EACb,yBAAyB;EACzB,wCAAwC;EACxC,mBAAmB;EACnB,gBAAgB,EAAA","sourcesContent":[".news-stories {\n    margin: 20px auto;\n    width: 80%;\n    max-width: 600px;\n    padding: 20px;\n    background-color: #1f1f1f;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n    border-radius: 10px;\n    transition: 0.3s;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -192,7 +184,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "footer {\n  background-color: #343a40;\n  color: white;\n  padding: 20px 0;\n  text-align: center;\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  transition: opacity 1s;\n  opacity: 0; }\n\nfooter.visible {\n  opacity: 1; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/footer.scss"],"names":[],"mappings":"AAAA;EACI,yBAAyB;EACzB,YAAY;EACZ,eAAe;EACf,kBAAkB;EAClB,eAAe;EACf,SAAS;EACT,WAAW;EACX,sBAAsB;EACtB,UAAU,EAAA;;AAId;EACI,UAAU,EAAA","sourcesContent":["footer {\n    background-color: #343a40;\n    color: white;\n    padding: 20px 0;\n    text-align: center;\n    position: fixed;\n    bottom: 0;\n    width: 100%;\n    transition: opacity 1s;\n    opacity: 0;\n}\n\n\nfooter.visible {\n    opacity: 1;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "footer {\n  background-color: #343a40;\n  color: #ffffff;\n  padding: 20px 0;\n  text-align: center;\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  transition: opacity 1s;\n  opacity: 0; }\n  footer.visible {\n    opacity: 1; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/footer.scss"],"names":[],"mappings":"AACA;EACI,yBAAyB;EACzB,cAAc;EACd,eAAe;EACf,kBAAkB;EAClB,eAAe;EACf,SAAS;EACT,WAAW;EACX,sBAAsB;EACtB,UAAU,EAAA;EATd;IAYM,UAAU,EAAA","sourcesContent":["// footer.scss\nfooter {\n    background-color: #343a40;\n    color: #ffffff;\n    padding: 20px 0;\n    text-align: center;\n    position: fixed;\n    bottom: 0;\n    width: 100%;\n    transition: opacity 1s;\n    opacity: 0;\n  \n    &.visible {\n      opacity: 1;\n    }\n  }\n  "],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -218,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "form {\n  margin: 20px auto;\n  width: 80%;\n  max-width: 600px;\n  padding: 20px;\n  background-color: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 10px; }\n  form input, form button {\n    width: 100%;\n    padding: 10px;\n    margin-bottom: 10px;\n    border: none;\n    border-radius: 5px; }\n  form button {\n    background-color: #28a745;\n    color: white; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/form.scss"],"names":[],"mappings":"AAAA;EACI,iBAAiB;EACjB,UAAU;EACV,gBAAgB;EAChB,aAAa;EACb,sBAAsB;EACtB,wCAAqC;EACrC,mBAAmB,EAAA;EAPvB;IAUQ,WAAW;IACX,aAAa;IACb,mBAAmB;IACnB,YAAY;IACZ,kBAAkB,EAAA;EAd1B;IAkBQ,yBAAyB;IACzB,YAAY,EAAA","sourcesContent":["form {\n    margin: 20px auto;\n    width: 80%;\n    max-width: 600px;\n    padding: 20px;\n    background-color: #fff;\n    box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n    border-radius: 10px;\n\n    input, button {\n        width: 100%;\n        padding: 10px;\n        margin-bottom: 10px;\n        border: none;\n        border-radius: 5px;\n    }\n\n    button {\n        background-color: #28a745;\n        color: white;\n    }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "form {\n  margin: 20px auto;\n  width: 80%;\n  max-width: 600px;\n  padding: 20px;\n  background-color: #1f1f1f;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 10px; }\n  form input, form button {\n    width: 100%;\n    padding: 30px;\n    margin-bottom: 10px;\n    border: none;\n    border-radius: 5px;\n    box-sizing: border-box;\n    background-color: #28a745;\n    /* Green color for the button */\n    color: #ffffff;\n    /* Text color for the input and button */\n    font-size: 20px; }\n  form button {\n    cursor: pointer; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/form.scss"],"names":[],"mappings":"AACA;EACI,iBAAiB;EACjB,UAAU;EACV,gBAAgB;EAChB,aAAa;EACb,yBAAyB;EACzB,wCAAwC;EACxC,mBAAmB,EAAA;EAPvB;IAUM,WAAW;IACX,aAAa;IACb,mBAAmB;IACnB,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,yBAAyB;IAAE,+BAAA;IAC3B,cAAc;IAAE,wCAAA;IAChB,eAAe,EAAA;EAlBrB;IAsBM,eAAe,EAAA","sourcesContent":["// form.scss\nform {\n    margin: 20px auto;\n    width: 80%;\n    max-width: 600px;\n    padding: 20px;\n    background-color: #1f1f1f;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n    border-radius: 10px;\n  \n    input, button {\n      width: 100%;\n      padding: 30px;\n      margin-bottom: 10px;\n      border: none;\n      border-radius: 5px;\n      box-sizing: border-box; // Add this line\n      background-color: #28a745; /* Green color for the button */\n      color: #ffffff; /* Text color for the input and button */\n      font-size: 20px;\n    }\n  \n    button {\n      cursor: pointer;\n    }\n  }\n  "],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -244,7 +236,59 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "header {\n  background-color: #007bff;\n  color: white;\n  padding: 20px 0;\n  text-align: center;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }\n  header h1 {\n    margin: 0; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/header.scss"],"names":[],"mappings":"AAAA;EACI,yBAAyB;EACzB,YAAY;EACZ,eAAe;EACf,kBAAkB;EAClB,wCAAqC,EAAA;EALzC;IAQQ,SAAS,EAAA","sourcesContent":["header {\n    background-color: #007bff;\n    color: white;\n    padding: 20px 0;\n    text-align: center;\n    box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n\n    h1 {\n        margin: 0;\n    }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "header {\n  background-color: #040c15;\n  color: #ffffff;\n  padding: 20px 0;\n  text-align: center;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }\n  header h1 {\n    margin: 0; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/header.scss"],"names":[],"mappings":"AACA;EACI,yBAAyB;EACzB,cAAc;EACd,eAAe;EACf,kBAAkB;EAClB,wCAAwC,EAAA;EAL5C;IAQM,SAAS,EAAA","sourcesContent":["// header.scss\nheader {\n    background-color: #040c15;\n    color: #ffffff;\n    padding: 20px 0;\n    text-align: center;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  \n    h1 {\n      margin: 0;\n    }\n  }\n  "],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/styles/news-story-parent.scss":
+/*!*******************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/styles/news-story-parent.scss ***!
+  \*******************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".news-story-parent {\n  margin: 20px auto;\n  width: 80%;\n  max-width: 600px;\n  padding: 20px;\n  background-color: #1f1f1f;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 10px;\n  transition: 0.3s; }\n  .news-story-parent::after {\n    content: \"\";\n    display: block;\n    height: 10px;\n    width: 100%;\n    background: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0) 100%); }\n  .news-story-parent::before {\n    content: \"\";\n    display: block;\n    height: 10px;\n    width: 100%;\n    background: linear-gradient(to top, black 0%, rgba(0, 0, 0, 0) 100%); }\n", "",{"version":3,"sources":["webpack://./src/client/styles/news-story-parent.scss"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,UAAU;EACV,gBAAgB;EAChB,aAAa;EACb,yBAAyB;EACzB,wCAAwC;EACxC,mBAAmB;EACnB,gBAAgB,EAAA;EARlB;IAWI,WAAW;IACX,cAAc;IACd,YAAY;IACZ,WAAW;IACX,uEAA4E,EAAA;EAfhF;IAmBI,WAAW;IACX,cAAc;IACd,YAAY;IACZ,WAAW;IACX,oEAAyE,EAAA","sourcesContent":[".news-story-parent {\n  margin: 20px auto;\n  width: 80%;\n  max-width: 600px;\n  padding: 20px;\n  background-color: #1f1f1f;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 10px;\n  transition: 0.3s;\n\n  &::after {\n    content: \"\";\n    display: block;\n    height: 10px;\n    width: 100%;\n    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);\n  }\n\n  &::before {\n    content: \"\";\n    display: block;\n    height: 10px;\n    width: 100%;\n    background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);\n  }\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/styles/news-story.scss":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/styles/news-story.scss ***!
+  \************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".news-story {\n  margin: 20px 0;\n  padding: 20px;\n  background-color: #1f1f1f;\n  color: #add8e6;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.2); }\n  .news-story:last-child {\n    border-bottom: none; }\n  .news-story:hover {\n    transform: scale(1.02); }\n  .news-story h2 {\n    margin: 0;\n    color: #ff7f50; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/news-story.scss"],"names":[],"mappings":"AAAA;EACE,cAAc;EACd,aAAa;EACb,yBAAyB;EACzB,cAAc;EACd,iDAAiD,EAAA;EALnD;IAQI,mBAAmB,EAAA;EARvB;IAYI,sBAAsB,EAAA;EAZ1B;IAgBI,SAAS;IACT,cAAc,EAAA","sourcesContent":[".news-story {\n  margin: 20px 0; // Adjust as per your needs\n  padding: 20px;\n  background-color: #1f1f1f;\n  color: #add8e6; // Light blue color for the story text\n  border-bottom: 1px solid rgba(255, 255, 255, 0.2); // Faint white line\n\n  &:last-child {\n    border-bottom: none; // No border for the last story\n  }\n\n  &:hover {\n    transform: scale(1.02);\n  }\n\n  h2 {\n    margin: 0;\n    color: #ff7f50; // Coral color for the story title\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -608,6 +652,114 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_header_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_header_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_header_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./src/client/styles/news-story-parent.scss":
+/*!**************************************************!*\
+  !*** ./src/client/styles/news-story-parent.scss ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_parent_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./news-story-parent.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/styles/news-story-parent.scss");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_parent_scss__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_parent_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_parent_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_parent_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./src/client/styles/news-story.scss":
+/*!*******************************************!*\
+  !*** ./src/client/styles/news-story.scss ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./news-story.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/styles/news-story.scss");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_scss__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_news_story_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
@@ -1024,6 +1176,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_footer_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles/footer.scss */ "./src/client/styles/footer.scss");
 /* harmony import */ var _styles_form_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles/form.scss */ "./src/client/styles/form.scss");
 /* harmony import */ var _styles_header_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./styles/header.scss */ "./src/client/styles/header.scss");
+/* harmony import */ var _styles_news_story_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./styles/news-story.scss */ "./src/client/styles/news-story.scss");
+/* harmony import */ var _styles_news_story_parent_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./styles/news-story-parent.scss */ "./src/client/styles/news-story-parent.scss");
+
+
 
 
 
@@ -1042,13 +1198,19 @@ document.getElementById('form').addEventListener('submit', function (event) {
   (0,_js_formHandler__WEBPACK_IMPORTED_MODULE_1__.handleSubmit)(event); // Then handle the form submission
 });
 
+var prevScrollPos = window.pageYOffset;
 window.onscroll = function () {
-  var scrollHeight, totalHeight;
-  scrollHeight = document.body.scrollHeight;
-  totalHeight = window.scrollY + window.innerHeight;
+  var currentScrollPos = window.pageYOffset;
+  var scrollHeight = document.body.scrollHeight;
+  var totalHeight = currentScrollPos + window.innerHeight;
   if (totalHeight >= scrollHeight) {
+    // Scrolling to the bottom of the page
     document.querySelector("footer").classList.add("visible");
+  } else if (prevScrollPos > currentScrollPos) {
+    // Scrolling up
+    document.querySelector("footer").classList.remove("visible");
   }
+  prevScrollPos = currentScrollPos;
 };
 })();
 

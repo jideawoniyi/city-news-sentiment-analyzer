@@ -5,6 +5,8 @@ import './styles/resets.scss'
 import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
+import './styles/news-story.scss'
+import './styles/news-story-parent.scss'
 
 export {
     checkForName,
@@ -24,13 +26,22 @@ document.getElementById('form').addEventListener('submit', function(event) {
     handleSubmit(event);  // Then handle the form submission
 });
 
-window.onscroll = function() {
-    var scrollHeight, totalHeight;
-    scrollHeight = document.body.scrollHeight;
-    totalHeight = window.scrollY + window.innerHeight;
+var prevScrollPos = window.pageYOffset;
 
-    if(totalHeight >= scrollHeight) {
-        document.querySelector("footer").classList.add("visible");
-    }
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  var scrollHeight = document.body.scrollHeight;
+  var totalHeight = currentScrollPos + window.innerHeight;
+
+  if (totalHeight >= scrollHeight) {
+    // Scrolling to the bottom of the page
+    document.querySelector("footer").classList.add("visible");
+  } else if (prevScrollPos > currentScrollPos) {
+    // Scrolling up
+    document.querySelector("footer").classList.remove("visible");
+  }
+
+  prevScrollPos = currentScrollPos;
+
 };
 
