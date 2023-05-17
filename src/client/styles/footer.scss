@@ -1,17 +1,15 @@
-// footer.scss
 footer {
-    background-color: #343a40;
-    color: #ffffff;
-    padding: 20px 0;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    transition: opacity 1s;
-    opacity: 0;
-  
-    &.visible {
-      opacity: 1;
-    }
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  transition: opacity 1s;
+  opacity: 0;
+
+  &.visible {
+    opacity: 1;
   }
-  
+}
