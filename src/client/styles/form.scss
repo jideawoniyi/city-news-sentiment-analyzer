@@ -18,31 +18,32 @@ form {
 
   input {
     width: 100%;
-    padding: 20px;
+    padding: 10px;  // reduced padding for smaller screens
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
     box-sizing: border-box;
     background-color: #ffffff; /* White color for the input */
     color: #000000; /* Black color for the input text */
-    font-size: 30px;
+    font-size: 16px;  // reduced font size for smaller screens
     text-align: center;
 
     @media (min-width: 576px) {
       margin-right: 10px;
       width: 75%;
-      font-size: 16px;
+      padding: 20px;  // increased padding for larger screens
+      font-size: 20px;  // increased font size for larger screens
     }
   }
 
   #submit-button {
     width: 100%;
-    padding: 15px 0;
+    padding: 8px 0;  // reduced padding for smaller screens
     border: none;
     border-radius: 5px;
     background-color: #4CAF50; /* Green */
     color: #ffffff; /* White */
-    font-size: 30px;
+    font-size: 16px;  // reduced font size for smaller screens
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -53,7 +54,8 @@ form {
 
     @media (min-width: 576px) {
       width: 20%;
-      font-size: 16px;
+      padding: 15px 0;  // increased padding for larger screens
+      font-size: 20px;  // increased font size for larger screens
     }
   }
 }
