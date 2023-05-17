@@ -1,27 +1,44 @@
-# Webpack Express Example App
+#City News Sentiment Analyzer
+This project is a web application that uses the Aylien News API to provide news articles about a specified city. It also includes sentiment analysis for each article.
 
-The goal of this repo is be an example of a basic but functional app built on Express and Webpack.
+Features
+Get news articles from any city
+Each news article includes a sentiment analysis
+Interactive UI with clickable articles
 
-If you want to follow along with the course, you will start from the master and switch to the appropriate numbered branches of this repo as needed. The branches are:
-- [0-initial-setup](https://github.com/udacity/fend-webpack-content/tree/0-initial-setup)
-- [1-install-webpack](https://github.com/udacity/fend-webpack-content/tree/1-install-webpack)
-- [2-add-webpack-entry](https://github.com/udacity/fend-webpack-content/tree/2-add-webpack-entry)
-- [3-webpack-output-and-loaders](https://github.com/udacity/fend-webpack-content/tree/3-webpack-output-and-loaders)
-- [4-webpack-plugins](https://github.com/udacity/fend-webpack-content/tree/4-webpack-plugins)
-- [5-webpack-mode](https://github.com/udacity/fend-webpack-content/tree/5-webpack-mode)
-- [6-webpack-for-convenience](https://github.com/udacity/fend-webpack-content/tree/6-webpack-for-convenience)
+##Prerequisites
+Node.js
+Yarn
 
-Each one is a step along the path to creating a fully functional webpack setup. In each branch, there will be a documentation file that lists out the steps taken in that branch (each step should also match to a git commit if you look at the history) which you can use as a checklist when setting up your own projects. 
+#Installation
 
-## Get Up and Running
+--Clone this repository
+--bash
 
-Fork this repo, then clone your forked repo down to your computer:
+git clone https://github.com/<username>/city-news-sentiment-analyzer.git
+Install dependencies
+bash
 
-```
-git clone -- git@github.com:[your-user-name]/webpack-express.git --
-```
+cd city-news-sentiment-analyzer
+yarn install
+Start the server
 
-`cd` into your new folder and run:
-- ```npm install```
-- ```npm start``` to start the app
-- this app runs on localhost:8080, but you can of course edit that in index.js
+yarn start
+Testing
+This project uses Jest for testing.
+
+To run the tests, use the following command:
+
+
+yarn test
+#Usage
+Enter the name of a city in the input field
+Click the submit button
+The articles will appear, numbered and with a sentiment analysis for each one
+#Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+License
+MIT
+
+Remember to replace <username> with your actual GitHub username. You might also need to adjust the paths and commands according to your project structure and setup. This README provides an introduction to your project, instructions on how to install and use it, and details on how to contribute. Feel free to customize it to better fit your project's specific needs.
