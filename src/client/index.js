@@ -7,6 +7,8 @@ import './styles/form.scss';
 import './styles/header.scss';
 import './styles/news-story.scss';
 import './styles/news-story-parent.scss';
+import './styles/error.scss';
+
 
 console.log(checkForName);
 
