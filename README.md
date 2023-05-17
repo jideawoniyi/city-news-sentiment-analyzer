@@ -1,4 +1,4 @@
-# City News Sentiment Analyzer
+# City News Web Scrapping using Natural Language Processing
 
 This project is a web application that uses the Aylien News API to provide news articles about a specified city. It also includes sentiment analysis for each article.
 
@@ -15,5 +15,45 @@ This project is a web application that uses the Aylien News API to provide news 
 
 **Clone this repository**
 
-```bash
+```
 git clone https://github.com/<username>/city-news-sentiment-analyzer.git
+```
+
+**Install dependencies**
+
+```
+cd city-news-sentiment-analyzer
+yarn install
+```
+**Start the server**
+```
+yarn start
+```
+## Testing
+This project uses Jest for testing.
+
+To run the tests, use the following command:
+```
+yarn test
+```
+## Usage
+```
+Enter the name of a city in the input field
+Click the submit button
+
+```
+The articles will appear, numbered and with a sentiment analysis for each one
+
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+
+## Licence
+MIT
+
+
+Remember to replace `<username>` with your actual GitHub username. You might also need to adjust the paths and commands according to your project structure and setup. This README provides an introduction to your project, instructions on how to install and use it, and details on how to contribute. Feel free to customize it to better fit your project's specific needs.
+
+
