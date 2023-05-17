@@ -1,3 +1,13 @@
+body {
+  background-color: #f0f0f0;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .news-story-parent {
   display: flex;
   flex-wrap: wrap;
@@ -14,29 +24,29 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
-
+  
   &:hover {
     transform: scale(1.05);
     transition: transform 0.2s;
   }
-
+  
   h2 {
     margin: 10px;
     font-size: 18px;
     font-weight: bold;
   }
-
+  
   p {
     margin: 10px;
     font-size: 14px;
   }
-
+  
   .sentiment {
     position: absolute;
     bottom: 10px;
     right: 10px;
   }
-
+  
   .polarity {
     position: absolute;
     bottom: 10px;
@@ -46,4 +56,17 @@
 
 .error-message {
   color: red;
+}
+
+/* Responsive Design */
+@media (min-width: 576px) {
+  .news-story {
+    width: calc(50% - 40px);
+  }
+}
+
+@media (min-width: 992px) {
+  .news-story {
+    width: calc(33% - 40px);
+  }
 }
