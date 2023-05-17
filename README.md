@@ -1,4 +1,4 @@
-#City News Sentiment Analyzer
+  #City News Sentiment Analyzer
 This project is a web application that uses the Aylien News API to provide news articles about a specified city. It also includes sentiment analysis for each article.
 
 Features
