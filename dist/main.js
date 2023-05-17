@@ -17,6 +17,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+var spinner = document.querySelector('.spinner');
+var form = document.getElementById('form');
+form.addEventListener('submit', handleSubmit);
+function showSpinner() {
+  spinner.style.display = 'block';
+}
+function hideSpinner() {
+  spinner.style.display = 'none';
+}
 var handleSubmit = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
     var cityInput, city, res, data, results, storiesContainer, totalStories, _loop, i;
@@ -24,45 +33,48 @@ var handleSubmit = /*#__PURE__*/function () {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           event.preventDefault();
+          showSpinner(); // Show the spinner when form is submitted
 
           // Retrieve the city from the form input
           cityInput = document.getElementById('name');
           city = cityInput.value;
           if (city) {
-            _context2.next = 5;
+            _context2.next = 7;
             break;
           }
+          hideSpinner(); // Hide the spinner if no city was input
           return _context2.abrupt("return");
-        case 5:
-          _context2.prev = 5;
-          _context2.next = 8;
+        case 7:
+          _context2.prev = 7;
+          _context2.next = 10;
           return fetch("http://localhost:8081/aylien?city=".concat(city), {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
             }
           });
-        case 8:
+        case 10:
           res = _context2.sent;
           if (res.ok) {
-            _context2.next = 11;
+            _context2.next = 13;
             break;
           }
           throw new Error('An error occurred with the Aylien API request.');
-        case 11:
-          _context2.next = 13;
-          return res.json();
         case 13:
+          _context2.next = 15;
+          return res.json();
+        case 15:
           data = _context2.sent;
           results = document.getElementById('results');
           results.innerHTML = ''; // Clear current results
           if (!(data.length === 0)) {
-            _context2.next = 19;
+            _context2.next = 22;
             break;
           }
           displayError("No results found.");
+          hideSpinner(); // Hide the spinner if no results were found
           return _context2.abrupt("return");
-        case 19:
+        case 22:
           // Create a new div to contain all the stories
           storiesContainer = document.createElement('div');
           storiesContainer.className = 'news-story-parent';
@@ -116,31 +128,33 @@ var handleSubmit = /*#__PURE__*/function () {
             }, _loop);
           });
           i = 0;
-        case 24:
+        case 27:
           if (!(i < totalStories)) {
-            _context2.next = 29;
+            _context2.next = 32;
             break;
           }
-          return _context2.delegateYield(_loop(i), "t0", 26);
-        case 26:
-          i++;
-          _context2.next = 24;
-          break;
+          return _context2.delegateYield(_loop(i), "t0", 29);
         case 29:
-          // Append the storiesContainer to the results
-          results.appendChild(storiesContainer);
-          _context2.next = 36;
+          i++;
+          _context2.next = 27;
           break;
         case 32:
-          _context2.prev = 32;
-          _context2.t1 = _context2["catch"](5);
+          // Append the storiesContainer to the results
+          results.appendChild(storiesContainer);
+          hideSpinner(); // Hide the spinner when results are displayed
+          _context2.next = 41;
+          break;
+        case 36:
+          _context2.prev = 36;
+          _context2.t1 = _context2["catch"](7);
           console.error(_context2.t1);
           displayError("Error occurred while fetching data.");
-        case 36:
+          hideSpinner(); // Hide the spinner if an error occurred
+        case 41:
         case "end":
           return _context2.stop();
       }
-    }, _callee, null, [[5, 32]]);
+    }, _callee, null, [[7, 36]]);
   }));
   return function handleSubmit(_x) {
     return _ref.apply(this, arguments);
@@ -355,7 +369,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f0f0f0; }\n\n#form {\n  display: flex;\n  flex-direction: column;\n  width: 100%; }\n\n.news-story-parent {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around; }\n\n.news-story {\n  width: 300px;\n  height: 300px;\n  margin: 20px;\n  background-color: rgba(255, 255, 255, 0.8);\n  color: #333;\n  border-radius: 10px;\n  overflow: hidden;\n  position: relative;\n  cursor: pointer; }\n  .news-story:hover {\n    transform: scale(1.05);\n    transition: transform 0.2s; }\n  .news-story h2 {\n    margin: 10px;\n    font-size: 18px;\n    font-weight: bold; }\n  .news-story p {\n    margin: 10px;\n    font-size: 14px; }\n  .news-story .sentiment {\n    position: absolute;\n    bottom: 10px;\n    right: 10px; }\n  .news-story .polarity {\n    position: absolute;\n    bottom: 10px;\n    left: 10px; }\n\n.error-message {\n  color: red; }\n\n/* Responsive Design */\n@media (min-width: 576px) {\n  .news-story {\n    width: calc(50% - 40px); } }\n\n@media (min-width: 992px) {\n  .news-story {\n    width: calc(33% - 40px); } }\n", "",{"version":3,"sources":["webpack://./src/client/styles/news-story.scss"],"names":[],"mappings":"AAAA;EACE,yBAAyB,EAAA;;AAG3B;EACE,aAAa;EACb,sBAAsB;EACtB,WAAW,EAAA;;AAGb;EACE,aAAa;EACb,eAAe;EACf,6BAA6B,EAAA;;AAG/B;EACE,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,0CAA0C;EAC1C,WAAW;EACX,mBAAmB;EACnB,gBAAgB;EAChB,kBAAkB;EAClB,eAAe,EAAA;EATjB;IAYI,sBAAsB;IACtB,0BAA0B,EAAA;EAb9B;IAiBI,YAAY;IACZ,eAAe;IACf,iBAAiB,EAAA;EAnBrB;IAuBI,YAAY;IACZ,eAAe,EAAA;EAxBnB;IA4BI,kBAAkB;IAClB,YAAY;IACZ,WAAW,EAAA;EA9Bf;IAkCI,kBAAkB;IAClB,YAAY;IACZ,UAAU,EAAA;;AAId;EACE,UAAU,EAAA;;AAGZ,sBAAA;AACA;EACE;IACE,uBAAuB,EAAA,EACxB;;AAGH;EACE;IACE,uBAAuB,EAAA,EACxB","sourcesContent":["body {\n  background-color: #f0f0f0;\n}\n\n#form {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n\n.news-story-parent {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.news-story {\n  width: 300px;\n  height: 300px;\n  margin: 20px;\n  background-color: rgba(255, 255, 255, 0.8);\n  color: #333;\n  border-radius: 10px;\n  overflow: hidden;\n  position: relative;\n  cursor: pointer;\n  \n  &:hover {\n    transform: scale(1.05);\n    transition: transform 0.2s;\n  }\n  \n  h2 {\n    margin: 10px;\n    font-size: 18px;\n    font-weight: bold;\n  }\n  \n  p {\n    margin: 10px;\n    font-size: 14px;\n  }\n  \n  .sentiment {\n    position: absolute;\n    bottom: 10px;\n    right: 10px;\n  }\n  \n  .polarity {\n    position: absolute;\n    bottom: 10px;\n    left: 10px;\n  }\n}\n\n.error-message {\n  color: red;\n}\n\n/* Responsive Design */\n@media (min-width: 576px) {\n  .news-story {\n    width: calc(50% - 40px);\n  }\n}\n\n@media (min-width: 992px) {\n  .news-story {\n    width: calc(33% - 40px);\n  }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f0f0f0; }\n\n#form {\n  display: flex;\n  flex-direction: column;\n  width: 100%; }\n\n.news-story-parent {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around; }\n\n.news-story {\n  width: 300px;\n  height: 300px;\n  margin: 20px;\n  background-color: rgba(255, 255, 255, 0.8);\n  color: #333;\n  border-radius: 10px;\n  overflow: hidden;\n  position: relative;\n  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);\n  transition: transform 0.2s;\n  cursor: pointer; }\n  .news-story:hover {\n    transform: scale(1.05);\n    transition: transform 0.2s; }\n  .news-story h2 {\n    margin: 10px;\n    font-size: 18px;\n    font-weight: bold; }\n  .news-story p {\n    margin: 10px;\n    font-size: 14px; }\n  .news-story .sentiment {\n    position: absolute;\n    bottom: 10px;\n    right: 10px; }\n  .news-story .polarity {\n    position: absolute;\n    bottom: 10px;\n    left: 10px; }\n\n#error-message {\n  color: red;\n  text-align: center;\n  font-weight: bold; }\n\n/* Responsive Design */\n@media (min-width: 576px) {\n  .news-story {\n    width: calc(50% - 40px); } }\n\n@media (min-width: 992px) {\n  .news-story {\n    width: calc(33% - 40px); } }\n\n#submit-button {\n  background-color: #4CAF50;\n  /* Green */\n  border: none;\n  color: white;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  margin: 4px 2px;\n  transition-duration: 0.4s;\n  cursor: pointer; }\n  #submit-button:hover {\n    background-color: #45a049; }\n\n.spinner {\n  border: 16px solid #f3f3f3;\n  /* Light grey */\n  border-top: 16px solid #3498db;\n  /* Blue */\n  border-radius: 50%;\n  width: 60px;\n  height: 60px;\n  animation: spin 2s linear infinite;\n  display: none; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n", "",{"version":3,"sources":["webpack://./src/client/styles/news-story.scss"],"names":[],"mappings":"AAAA;EACE,yBAAyB,EAAA;;AAG3B;EACE,aAAa;EACb,sBAAsB;EACtB,WAAW,EAAA;;AAGb;EACE,aAAa;EACb,eAAe;EACf,6BAA6B,EAAA;;AAG/B;EACE,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,0CAA0C;EAC1C,WAAW;EACX,mBAAmB;EACnB,gBAAgB;EAChB,kBAAkB;EAClB,0CAA4C;EAC5C,0BAA0B;EAC1B,eAAe,EAAA;EAXjB;IAcI,sBAAsB;IACtB,0BAA0B,EAAA;EAf9B;IAmBI,YAAY;IACZ,eAAe;IACf,iBAAiB,EAAA;EArBrB;IAyBI,YAAY;IACZ,eAAe,EAAA;EA1BnB;IA8BI,kBAAkB;IAClB,YAAY;IACZ,WAAW,EAAA;EAhCf;IAoCI,kBAAkB;IAClB,YAAY;IACZ,UAAU,EAAA;;AAId;EACE,UAAU;EACV,kBAAkB;EAClB,iBAAiB,EAAA;;AAGnB,sBAAA;AACA;EACE;IACE,uBAAuB,EAAA,EACxB;;AAGH;EACE;IACE,uBAAuB,EAAA,EACxB;;AAIH;EACE,yBAAyB;EAAE,UAAA;EAC3B,YAAY;EACZ,YAAY;EACZ,kBAAkB;EAClB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,eAAe;EACf,eAAe;EACf,yBAAyB;EACzB,eAAe,EAAA;EAXjB;IAaI,yBAAyB,EAAA;;AAI7B;EACE,0BAA0B;EAAE,eAAA;EAC5B,8BAA8B;EAAE,SAAA;EAChC,kBAAkB;EAClB,WAAW;EACX,YAAY;EACZ,kCAAkC;EAClC,aAAa,EAAA;;AAGf;EACE;IAAK,uBAAuB,EAAA;EAC5B;IAAO,yBAAyB,EAAA,EAAA","sourcesContent":["body {\n  background-color: #f0f0f0;\n}\n\n#form {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n\n.news-story-parent {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.news-story {\n  width: 300px;\n  height: 300px;\n  margin: 20px;\n  background-color: rgba(255, 255, 255, 0.8);\n  color: #333;\n  border-radius: 10px;\n  overflow: hidden;\n  position: relative;\n  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);\n  transition: transform 0.2s;\n  cursor: pointer;\n  \n  &:hover {\n    transform: scale(1.05);\n    transition: transform 0.2s;\n  }\n  \n  h2 {\n    margin: 10px;\n    font-size: 18px;\n    font-weight: bold;\n  }\n  \n  p {\n    margin: 10px;\n    font-size: 14px;\n  }\n  \n  .sentiment {\n    position: absolute;\n    bottom: 10px;\n    right: 10px;\n  }\n  \n  .polarity {\n    position: absolute;\n    bottom: 10px;\n    left: 10px;\n  }\n}\n\n#error-message {\n  color: red;\n  text-align: center;\n  font-weight: bold;\n}\n\n/* Responsive Design */\n@media (min-width: 576px) {\n  .news-story {\n    width: calc(50% - 40px);\n  }\n}\n\n@media (min-width: 992px) {\n  .news-story {\n    width: calc(33% - 40px);\n  }\n}\n\n\n#submit-button {\n  background-color: #4CAF50; /* Green */\n  border: none;\n  color: white;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  margin: 4px 2px;\n  transition-duration: 0.4s;\n  cursor: pointer;\n  &:hover {\n    background-color: #45a049;\n  }\n}\n\n.spinner {\n  border: 16px solid #f3f3f3; /* Light grey */\n  border-top: 16px solid #3498db; /* Blue */\n  border-radius: 50%;\n  width: 60px;\n  height: 60px;\n  animation: spin 2s linear infinite;\n  display: none;\n}\n\n@keyframes spin {\n  0% { transform: rotate(0deg); }\n  100% { transform: rotate(360deg); }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

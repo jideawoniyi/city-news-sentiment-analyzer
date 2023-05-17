@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>News Stories</title>
-    <script defer="defer" src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 <script defer src="main.js"></script></head>
 <body>
     <header>
@@ -12,10 +12,17 @@
     <form id="form">
         <!-- <label for="name">What city do you want to get news from:</label> -->
         <input id="name" type="text" name="input" value="" placeholder="Enter name of city" required>
-        <input type="submit" value="Submit">
+        <button type="submit" id="submit-button">Submit</button>
+        <div class="spinner" style="display: none;">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
     </form>
-    
-    <section id="results">
+    <div class="spinner" style="display: none;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+    <section id="results" class="news-story-parent">
         <!-- News stories will be inserted here -->
     </section>
     <footer>
@@ -23,14 +30,15 @@
     </footer>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
-          // Check that service workers are supported
-          if ('serviceWorker' in navigator) {
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js');
             });
         }
     </script>
-   
 </body>
 </html>
+
+  

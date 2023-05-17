@@ -7,7 +7,7 @@ import '@testing-library/jest-dom/extend-expect';
 global.fetch = jest.fn(() =>
   Promise.resolve({
     ok: true,
-    json: () => Promise.resolve([{ title: 'Test Title', links: { permalink: 'https://example.com' } }])
+    json: () => Promise.resolve([{ title: 'Testing the handleSubmit() function', links: { permalink: 'https://example.com' } }])
   })
 );
 
