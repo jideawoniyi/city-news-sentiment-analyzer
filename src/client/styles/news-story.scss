@@ -1,20 +1,49 @@
+.news-story-parent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 .news-story {
-  margin: 20px 0; // Adjust as per your needs
-  padding: 20px;
-  background-color: #1f1f1f;
-  color: #add8e6; // Light blue color for the story text
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); // Faint white line
-  cursor: pointer; /* Set the cursor to hand (pointer) */
-  &:last-child {
-    border-bottom: none; // No border for the last story
-  }
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
 
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
+    transition: transform 0.2s;
   }
 
   h2 {
-    margin: 0;
-    color: #ff7f50; // Coral color for the story title
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
   }
+
+  p {
+    margin: 10px;
+    font-size: 14px;
+  }
+
+  .sentiment {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .polarity {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+.error-message {
+  color: red;
 }

@@ -77,6 +77,9 @@ var handleSubmit = /*#__PURE__*/function () {
                   // Create the story div
                   storyDiv = document.createElement('div');
                   storyDiv.className = 'news-story';
+                  storyDiv.style.backgroundImage = "url('".concat(data[i].image, "')");
+                  storyDiv.style.backgroundSize = 'cover';
+                  storyDiv.style.backgroundPosition = 'center';
 
                   // Create the story title element
                   storyTitle = document.createElement('h2');
@@ -106,7 +109,7 @@ var handleSubmit = /*#__PURE__*/function () {
 
                   // Append the story div to the storiesContainer
                   storiesContainer.appendChild(storyDiv);
-                case 19:
+                case 22:
                 case "end":
                   return _context.stop();
               }
@@ -352,7 +355,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".news-story {\n  margin: 20px 0;\n  padding: 20px;\n  background-color: #1f1f1f;\n  color: #add8e6;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.2);\n  cursor: pointer;\n  /* Set the cursor to hand (pointer) */ }\n  .news-story:last-child {\n    border-bottom: none; }\n  .news-story:hover {\n    transform: scale(1.02); }\n  .news-story h2 {\n    margin: 0;\n    color: #ff7f50; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/news-story.scss"],"names":[],"mappings":"AAAA;EACE,cAAc;EACd,aAAa;EACb,yBAAyB;EACzB,cAAc;EACd,iDAAiD;EACjD,eAAe;EAAE,qCAAA,EAAsC;EANzD;IAQI,mBAAmB,EAAA;EARvB;IAYI,sBAAsB,EAAA;EAZ1B;IAgBI,SAAS;IACT,cAAc,EAAA","sourcesContent":[".news-story {\n  margin: 20px 0; // Adjust as per your needs\n  padding: 20px;\n  background-color: #1f1f1f;\n  color: #add8e6; // Light blue color for the story text\n  border-bottom: 1px solid rgba(255, 255, 255, 0.2); // Faint white line\n  cursor: pointer; /* Set the cursor to hand (pointer) */\n  &:last-child {\n    border-bottom: none; // No border for the last story\n  }\n\n  &:hover {\n    transform: scale(1.02);\n  }\n\n  h2 {\n    margin: 0;\n    color: #ff7f50; // Coral color for the story title\n  }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".news-story-parent {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around; }\n\n.news-story {\n  width: 300px;\n  height: 300px;\n  margin: 20px;\n  background-color: rgba(255, 255, 255, 0.8);\n  color: #333;\n  border-radius: 10px;\n  overflow: hidden;\n  position: relative;\n  cursor: pointer; }\n  .news-story:hover {\n    transform: scale(1.05);\n    transition: transform 0.2s; }\n  .news-story h2 {\n    margin: 10px;\n    font-size: 18px;\n    font-weight: bold; }\n  .news-story p {\n    margin: 10px;\n    font-size: 14px; }\n  .news-story .sentiment {\n    position: absolute;\n    bottom: 10px;\n    right: 10px; }\n  .news-story .polarity {\n    position: absolute;\n    bottom: 10px;\n    left: 10px; }\n\n.error-message {\n  color: red; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/news-story.scss"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,eAAe;EACf,6BAA6B,EAAA;;AAG/B;EACE,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,0CAA0C;EAC1C,WAAW;EACX,mBAAmB;EACnB,gBAAgB;EAChB,kBAAkB;EAClB,eAAe,EAAA;EATjB;IAYI,sBAAsB;IACtB,0BAA0B,EAAA;EAb9B;IAiBI,YAAY;IACZ,eAAe;IACf,iBAAiB,EAAA;EAnBrB;IAuBI,YAAY;IACZ,eAAe,EAAA;EAxBnB;IA4BI,kBAAkB;IAClB,YAAY;IACZ,WAAW,EAAA;EA9Bf;IAkCI,kBAAkB;IAClB,YAAY;IACZ,UAAU,EAAA;;AAId;EACE,UAAU,EAAA","sourcesContent":[".news-story-parent {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.news-story {\n  width: 300px;\n  height: 300px;\n  margin: 20px;\n  background-color: rgba(255, 255, 255, 0.8);\n  color: #333;\n  border-radius: 10px;\n  overflow: hidden;\n  position: relative;\n  cursor: pointer;\n\n  &:hover {\n    transform: scale(1.05);\n    transition: transform 0.2s;\n  }\n\n  h2 {\n    margin: 10px;\n    font-size: 18px;\n    font-weight: bold;\n  }\n\n  p {\n    margin: 10px;\n    font-size: 14px;\n  }\n\n  .sentiment {\n    position: absolute;\n    bottom: 10px;\n    right: 10px;\n  }\n\n  .polarity {\n    position: absolute;\n    bottom: 10px;\n    left: 10px;\n  }\n}\n\n.error-message {\n  color: red;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

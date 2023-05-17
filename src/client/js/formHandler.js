@@ -41,6 +41,9 @@ const handleSubmit = async (event) => {
         // Create the story div
         let storyDiv = document.createElement('div');
         storyDiv.className = 'news-story';
+        storyDiv.style.backgroundImage = `url('${data[i].image}')`;
+        storyDiv.style.backgroundSize = 'cover';
+        storyDiv.style.backgroundPosition = 'center';
   
         // Create the story title element
         let storyTitle = document.createElement('h2');
@@ -93,4 +96,3 @@ const handleSubmit = async (event) => {
   };
   
   export { handleSubmit };
-  
