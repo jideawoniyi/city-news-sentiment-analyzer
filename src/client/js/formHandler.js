@@ -38,7 +38,7 @@ const handleSubmit = async (event) => {
     }
   
     const data = await res.json();
-  
+    
     const results = document.getElementById('results');
     results.innerHTML = ''; // Clear current results
   
@@ -51,6 +51,10 @@ const handleSubmit = async (event) => {
     // Create a new div to contain all the stories
     let storiesContainer = document.createElement('div');
     storiesContainer.className = 'news-story-parent';
+
+
+    // Append the storiesContainer to the results
+    results.appendChild(storiesContainer);
   
     // Add each story to the storiesContainer
     let totalStories = data.length; // Get the total number of stories
