@@ -107,3 +107,53 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.sentiment-section {
+  text-align: center;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.sentiment-header {
+  margin-bottom: 10px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+.neutral {
+  background-color: blue;
+
+}
+
+.positive {
+  background-color: green;
+
+}
+
+.negative {
+  background-color: red;
+
+}
+
+.confidence {
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+.positive, .negative, .neutral {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+}
+

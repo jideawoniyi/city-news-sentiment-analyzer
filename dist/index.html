@@ -1,8 +1,38 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><title>News Stories</title><script>document.getElementById('year').textContent = new Date().getFullYear();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Stories</title>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
         // Check that service workers are supported
         if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js');
             });
-        }</script><script defer="defer" src="main.js"></script><link href="main.css" rel="stylesheet"></head><body><header><h1>City News</h1></header><form id="form"><input id="name" name="input" value="" placeholder="Enter name of city" required> <button type="submit" id="submit-button">Submit</button><div class="spinner" style="display: none;"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></form><div class="spinner" style="display: none;"><div class="double-bounce1"></div><div class="double-bounce2"></div></div><section id="results"></section><footer><p>Designed by Babajide Awoniyi ©<span id="year"></span></p></footer></body></html>
+        }
+    </script>
+<script defer src="main.js"></script></head>
+<body>
+    <header>
+        <h1>City News</h1>
+    </header>
+    <form id="form">
+        <!-- <label for="name">What city do you want to get news from:</label> -->
+        <input id="name" type="text" name="input" value="" placeholder="Enter name of city" required>
+        <button type="submit" id="submit-button">Submit</button>
+        <div class="spinner" style="display: none;">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </form>
+    <section id="results">
+        <!-- News stories will be inserted here -->
+    </section>
+    <footer>
+        <p>Designed by Babajide Awoniyi ©<span id="year"></span></p>
+    </footer>
+    
+</body>
+</html>
